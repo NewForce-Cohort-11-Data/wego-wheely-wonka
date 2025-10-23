@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Adherence Map Toggle</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        #map-container iframe {
+            width: 100%;
+            height: 600px;
+            border: none;
+            display: none;
+        }
+        #map-container iframe.active {
+            display: block;
+        }
+        #toggle-buttons {
+            margin-bottom: 10px;
+        }
+        button {
+            padding: 8px 16px;
+            margin-right: 10px;
+            font-size: 16px;
+            background-color: #f0f0f0;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #e0e0e0;
+        }
+    </style>
+</head>
+<body>
+    <h2>Low Adherence Map by Operator</h2>
+    <div id="toggle-buttons">
+        <button onclick="showMap('morning')">Morning (6–9 AM)</button>
+        <button onclick="showMap('evening')">Evening (3–6 PM)</button>
+    </div>
+    <div id="map-container">
+        <iframe id="morning" src="low_adherence_morning_by_operator.html?v=morning" class="active"></iframe>
+        <iframe id="evening" src="low_adherence_evening_by_operator.html?v=evening"></iframe>
+    </div>
+
+    <script>
+        function showMap(id) {
+            document.querySelectorAll('#map-container iframe').forEach(frame => {
+                frame.classList.remove('active');
+            });
+            document.getElementById(id).classList.add('active');
+        }
+    </script>
+</body>
+</html>
